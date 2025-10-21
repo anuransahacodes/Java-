@@ -1,7 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-class CalculatorLogic {
+class Calculator { // Renamed from CalculatorLogic
     public int add(int x, int y) { return x + y; }
     public double add(double x, double y) { return x + y; }
     public int add(int x, int y, int z) { return x + y + z; }
@@ -18,23 +18,23 @@ class CalculatorLogic {
     }
 }
 
-public class SimpleCalculator {
+public class UserInterface { // Renamed from SimpleCalculator
     private Scanner input = new Scanner(System.in);
-    private CalculatorLogic logic = new CalculatorLogic();
+    private Calculator logic = new Calculator(); // Uses the new class name
 
     public void start() {
         int choice;
         do {
-            showMenu();
+            mainMenu(); // Renamed from showMenu()
             try {
                 choice = input.nextInt();
                 input.nextLine();
 
                 switch (choice) {
-                    case 1: handleAddition(); break;
-                    case 2: handleSubtraction(); break;
-                    case 3: handleMultiplication(); break;
-                    case 4: handleDivision(); break;
+                    case 1: performAddition(); break; // Renamed from handleAddition()
+                    case 2: performSubtraction(); break; // Renamed from handleSubtraction()
+                    case 3: performMultiplication(); break; // Renamed from handleMultiplication()
+                    case 4: performDivision(); break; // Renamed from handleDivision()
                     case 5: System.out.println("Thank you! Program exiting."); break;
                     default: System.out.println("Invalid option. Please choose 1-5.");
                 }
@@ -47,7 +47,7 @@ public class SimpleCalculator {
         input.close();
     }
 
-    private void showMenu() {
+    private void mainMenu() { // Renamed from showMenu()
         System.out.println("\n--- Calculator Menu ---");
         System.out.println("1. Add (Overloaded)");
         System.out.println("2. Subtract");
@@ -57,7 +57,7 @@ public class SimpleCalculator {
         System.out.print("Enter choice: ");
     }
 
-    private void handleAddition() {
+    private void performAddition() { // Renamed from handleAddition()
         System.out.println("\n--- Addition Types ---");
         System.out.println("1. Two Integers (int)");
         System.out.println("2. Two Decimals (double)");
@@ -91,7 +91,7 @@ public class SimpleCalculator {
         }
     }
 
-    private void handleSubtraction() {
+    private void performSubtraction() { // Renamed from handleSubtraction()
         try {
             System.out.print("Enter two integers for subtraction (a - b): ");
             int a = input.nextInt(), b = input.nextInt();
@@ -102,7 +102,7 @@ public class SimpleCalculator {
         }
     }
 
-    private void handleMultiplication() {
+    private void performMultiplication() { // Renamed from handleMultiplication()
         try {
             System.out.print("Enter two decimals for multiplication: ");
             double a = input.nextDouble(), b = input.nextDouble();
@@ -113,7 +113,7 @@ public class SimpleCalculator {
         }
     }
 
-    private void handleDivision() {
+    private void performDivision() { // Renamed from handleDivision()
         try {
             System.out.print("Enter numerator (dividend): ");
             int a = input.nextInt();
@@ -131,6 +131,6 @@ public class SimpleCalculator {
     }
     
     public static void main(String[] args) {
-        new SimpleCalculator().start();
+        new UserInterface().start(); // Uses the new class name
     }
 }
